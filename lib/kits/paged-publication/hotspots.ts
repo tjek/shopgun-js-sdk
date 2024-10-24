@@ -77,7 +77,7 @@ function renderHotspot(hotspot, position, contentRect, boundingRect) {
                     title="sgn-pagedecoration-embed-${hotspot.id}"
                     height="100%"
                     width="100%"
-                    sandbox="allow-scripts allow-same-origin"
+                    sandbox="allow-scripts allow-same-origin allow-forms"
                     style="border:0;"
                 ></iframe>
             `;
