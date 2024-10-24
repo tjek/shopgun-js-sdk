@@ -329,7 +329,7 @@ function renderView(view, canLazyload: boolean) {
             tagName = 'iframe';
             classNames.push('incito__html-embed-view');
 
-            attrs.sandbox = 'allow-scripts allow-same-origin';
+            attrs.sandbox = 'allow-scripts allow-same-origin allow-forms';
             attrs.allowfullscreen = '';
 
             const src = String(new URL(view.src));
