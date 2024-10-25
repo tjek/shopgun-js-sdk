@@ -204,6 +204,7 @@ const OfferOverview = ({
 
             return {
                 ...product,
+                description: product.description?.replace('{{savings}}', ''),
                 link: product.link || offer.webshop_link,
                 price,
                 formattedPrice: formatPrice(price, localeCode, priceCurrency),
