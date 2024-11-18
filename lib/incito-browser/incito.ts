@@ -316,7 +316,7 @@ function renderView(view, canLazyload: boolean) {
                     .trim()
                     .split(';')
                     .forEach((style) => {
-                        const {0: key, 1: value} = style.trim().split(':');
+                        const {0: key, 1: value} = style.trim().split(/:(.+)/);
 
                         styles[key] = value;
                     });
