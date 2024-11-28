@@ -793,20 +793,21 @@ export default class Incito extends MicroEvent<{
 
     start() {
         this.el.addEventListener('click', (e) => {
-            const linkEl = closest(
-                e.target as HTMLElement,
-                '.tjek-incito__view [data-link]'
-            );
+            if (!(e.target instanceof HTMLElement)) {
+                return;
+            }
+
+            const linkEl = closest(e.target, '.tjek-incito__view [data-link]');
             const carouselEl = closest(
-                e.target as HTMLElement,
+                e.target,
                 '.tjek-incito__carousel-layout-view'
             );
             const carouselPrevEl = closest(
-                e.target as HTMLElement,
+                e.target,
                 '[data-role=carousel-prev]'
             );
             const carouselNextEl = closest(
-                e.target as HTMLElement,
+                e.target,
                 '[data-role=carousel-next]'
             );
             const link = linkEl ? linkEl.dataset.link : null;
