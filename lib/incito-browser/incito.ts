@@ -404,7 +404,7 @@ function renderView(view, canLazyload: boolean) {
             break;
         }
         case 'CarouselLayout': {
-            classNames.push('tjek-incito__carousel-layout-view');
+            classNames.push('incito__carousel-layout-view');
 
             break;
         }
@@ -797,10 +797,10 @@ export default class Incito extends MicroEvent<{
                 return;
             }
 
-            const linkEl = closest(e.target, '.tjek-incito__view [data-link]');
+            const linkEl = closest(e.target, '.incito__view [data-link]');
             const carouselEl = closest(
                 e.target,
-                '.tjek-incito__carousel-layout-view'
+                '.incito__carousel-layout-view'
             );
             const carouselPrevEl = closest(
                 e.target,
