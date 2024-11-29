@@ -6,7 +6,7 @@ import {PutObjectCommand, S3Client} from '@aws-sdk/client-s3';
 import {readFile} from 'fs/promises';
 import path from 'path';
 import * as url from 'url';
-import pkg from './dist/shopgun-sdk/package.json' assert {type: 'json'};
+import pkg from './dist/shopgun-sdk/package.json' with {type: 'json'};
 const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
 
 const s3Client = new S3Client({region: 'eu-west-1'});

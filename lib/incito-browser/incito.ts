@@ -403,6 +403,11 @@ function renderView(view, canLazyload: boolean) {
 
             break;
         }
+        case 'CarouselLayout': {
+            classNames.push('incito__carousel-layout-view');
+
+            break;
+        }
     }
 
     if (isDefinedStr(view.id)) {
@@ -788,13 +793,61 @@ export default class Incito extends MicroEvent<{
 
     start() {
         this.el.addEventListener('click', (e) => {
-            const el = closest(
-                e.target as HTMLElement,
-                '.incito__view [data-link]'
-            );
-            const link = el ? el.dataset.link : null;
+            if (!(e.target instanceof HTMLElement)) {
+                return;
+            }
 
-            if (isDefinedStr(link)) window.open(link!, '_blank');
+            const linkEl = closest(e.target, '.incito__view [data-link]');
+            const carouselEl = closest(
+                e.target,
+                '.incito__carousel-layout-view'
+            );
+            const carouselPrevEl = closest(
+                e.target,
+                '[data-role=carousel-prev]'
+            );
+            const carouselNextEl = closest(
+                e.target,
+                '[data-role=carousel-next]'
+            );
+            const link = linkEl ? linkEl.dataset.link : null;
+
+            if (isDefinedStr(link)) {
+                window.open(link!, '_blank');
+            }
+
+            if (carouselEl) {
+                const scrollWidth = carouselEl.scrollWidth;
+                const clientWidth = carouselEl.clientWidth;
+                const scrollLeft = carouselEl.scrollLeft;
+
+                if (carouselPrevEl) {
+                    const newScrollLeft = scrollLeft - clientWidth;
+
+                    if (newScrollLeft < 0) {
+                        carouselEl.scrollTo({
+                            left: scrollWidth - clientWidth,
+                            behavior: 'smooth'
+                        });
+                    } else {
+                        carouselEl.scrollTo({
+                            left: newScrollLeft,
+                            behavior: 'smooth'
+                        });
+                    }
+                } else if (carouselNextEl) {
+                    const newScrollLeft = scrollLeft + clientWidth;
+
+                    if (newScrollLeft >= scrollWidth) {
+                        carouselEl.scrollTo({left: 0, behavior: 'smooth'});
+                    } else {
+                        carouselEl.scrollTo({
+                            left: newScrollLeft,
+                            behavior: 'smooth'
+                        });
+                    }
+                }
+            }
         });
 
         if (this.canLazyload) {

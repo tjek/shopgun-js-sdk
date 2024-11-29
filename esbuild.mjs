@@ -7,7 +7,7 @@ import path from 'path';
 import stylus from 'stylus';
 import ts from 'typescript';
 import * as url from 'url';
-import packageJson from './package.json' assert {type: 'json'};
+import packageJson from './package.json' with {type: 'json'};
 
 const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
 

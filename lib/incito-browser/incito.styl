@@ -67,3 +67,31 @@
     
     > *
         position absolute
+
+.tjek-incito__carousel-layout-view
+    display flex
+    flex-direction row
+    justify-content flex-start
+    align-items center
+    overflow-x auto
+    overflow-y hidden
+    scroll-snap-type x mandatory
+    -webkit-overflow-scrolling touch
+
+.tjek-incito__carousel-layout-view > *
+    flex 0 0 auto
+    scroll-snap-align start
+    display flex
+    justify-content center
+    align-items center
+    box-sizing border-box
+
+.tjek-incito__carousel-layout-view::-webkit-scrollbar
+    opacity 0
+    display none
+
+.tjek-incito__carousel-layout-view::-webkit-scrollbar-track
+    opacity 0
+
+.tjek-incito__carousel-layout-view::-webkit-scrollbar-thumb
+    opacity 0
