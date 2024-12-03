@@ -949,9 +949,9 @@ export default class Incito extends MicroEvent<{
         this.trigger(visibility, {sectionId, sectionPosition});
 
         if (visible) {
-            sectionEl.classList.add('tjek-incito--visible');
+            sectionEl.classList.add('incito--visible');
         } else {
-            sectionEl.classList.remove('tjek-incito--visible');
+            sectionEl.classList.remove('incito--visible');
         }
     }
     visibility: DocumentVisibilityState = 'visible';
