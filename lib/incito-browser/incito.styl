@@ -73,11 +73,12 @@
     flex-direction row
     justify-content flex-start
     align-items center
+    overflow hidden
+
+.incito--visible .incito__carousel-layout-view
     overflow-x auto
-    overflow-y hidden
     scroll-snap-type x mandatory
     scroll-snap-stop always
-    -webkit-overflow-scrolling touch
 
 .incito__carousel-layout-view > *
     flex 0 0 auto
@@ -88,11 +89,4 @@
     box-sizing border-box
 
 .incito__carousel-layout-view::-webkit-scrollbar
-    opacity 0
     display none
-
-.incito__carousel-layout-view::-webkit-scrollbar-track
-    opacity 0
-
-.incito__carousel-layout-view::-webkit-scrollbar-thumb
-    opacity 0

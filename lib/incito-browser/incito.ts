@@ -155,7 +155,7 @@ const flexDirectionModes = ['row', 'column'];
 const backgroundTileModes = ['repeat_x', 'repeat_y', 'repeat'];
 const strokeStyles = ['solid', 'dotted', 'dashed'];
 
-function renderView(view, canLazyload: boolean) {
+function renderView(view, canLazyload: boolean, shouldLazyload: boolean) {
     let tagName = 'div';
     let contents: string | undefined;
     const classNames = ['incito__view'];
@@ -266,7 +266,7 @@ function renderView(view, canLazyload: boolean) {
             const src = String(new URL(view.src));
 
             if (isDefinedStr(view.src)) {
-                if (canLazyload) {
+                if (canLazyload && shouldLazyload) {
                     attrs.loading = 'lazy';
                 }
 
@@ -287,7 +287,7 @@ function renderView(view, canLazyload: boolean) {
 
             const src = String(new URL(view.src));
 
-            if (canLazyload) {
+            if (canLazyload && shouldLazyload) {
                 attrs['data-src'] = `${src}#t=0.1`;
                 attrs['data-mime'] = view.mime;
                 classNames.push('incito--lazy');
@@ -334,10 +334,10 @@ function renderView(view, canLazyload: boolean) {
 
             const src = String(new URL(view.src));
 
-            if ('loading' in HTMLIFrameElement.prototype) {
+            if (shouldLazyload && 'loading' in HTMLIFrameElement.prototype) {
                 attrs.loading = 'lazy';
                 attrs.src = src;
-            } else if (canLazyload) {
+            } else if (canLazyload && shouldLazyload) {
                 classNames.push('incito--lazy');
                 attrs['data-src'] = src;
             } else {
@@ -498,7 +498,7 @@ function renderView(view, canLazyload: boolean) {
     }
 
     if (isDefinedStr(view.background_image)) {
-        if (canLazyload) {
+        if (canLazyload && shouldLazyload) {
             classNames.push('incito--lazy');
 
             attrs['data-bg'] = view.background_image;
@@ -919,7 +919,7 @@ export default class Incito extends MicroEvent<{
                     if (res.status === 200) return res.json();
                 })
                 .then((res) => {
-                    el.innerHTML = this.renderHtml(res);
+                    el.innerHTML = this.renderHtml(res, false);
 
                     this.observeElements(el);
                     this.trigger('incitoEmbedLoaded', {el});
@@ -947,6 +947,12 @@ export default class Incito extends MicroEvent<{
 
         const visibility = visible ? 'sectionVisible' : 'sectionHidden';
         this.trigger(visibility, {sectionId, sectionPosition});
+
+        if (visible) {
+            sectionEl.classList.add('tjek-incito--visible');
+        } else {
+            sectionEl.classList.remove('tjek-incito--visible');
+        }
     }
     visibility: DocumentVisibilityState = 'visible';
     onVisibilityChange(newVisibility: DocumentVisibilityState) {
@@ -1018,13 +1024,14 @@ export default class Incito extends MicroEvent<{
         );
     }
 
-    renderHtml(view) {
+    renderHtml(view, shouldLazyload = true) {
         let html = '';
 
         try {
             const {tagName, contents, attrs} = renderView(
                 view,
-                this.canLazyload
+                this.canLazyload,
+                shouldLazyload
             );
             const {id, child_views, meta, role} = view;
 
@@ -1043,7 +1050,7 @@ export default class Incito extends MicroEvent<{
 
             if (Array.isArray(child_views)) {
                 for (let i = 0; i < child_views.length; i++) {
-                    html += this.renderHtml(child_views[i]);
+                    html += this.renderHtml(child_views[i], shouldLazyload);
                 }
             }
 
