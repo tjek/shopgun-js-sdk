@@ -305,7 +305,17 @@ function renderView(view, canLazyload: boolean, shouldLazyload: boolean) {
                 }
             } else {
                 attrs.src = `${src}#t=0.1`;
-                attrs.controls = '';
+                if (view.autoplay === true) {
+                    attrs['data-autoplay'] = true;
+                }
+
+                if (view.controls === true) {
+                    attrs['controls'] = '';
+                }
+
+                if (view.loop === true) {
+                    attrs['loop'] = '';
+                }
             }
 
             break;
