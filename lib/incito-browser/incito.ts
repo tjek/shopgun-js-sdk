@@ -287,25 +287,24 @@ function renderView(view, canLazyload: boolean, shouldLazyload: boolean) {
 
             const src = String(new URL(view.src));
 
+            if (view.autoplay === true) {
+                attrs['data-autoplay'] = true;
+            }
+
+            if (view.controls === true) {
+                attrs['controls'] = '';
+            }
+
+            if (view.loop === true) {
+                attrs['loop'] = '';
+            }
+
             if (canLazyload && shouldLazyload) {
                 attrs['data-src'] = `${src}#t=0.1`;
                 attrs['data-mime'] = view.mime;
                 classNames.push('incito--lazy');
-
-                if (view.autoplay === true) {
-                    attrs['data-autoplay'] = true;
-                }
-
-                if (view.controls === true) {
-                    attrs['controls'] = '';
-                }
-
-                if (view.loop === true) {
-                    attrs['loop'] = '';
-                }
             } else {
                 attrs.src = `${src}#t=0.1`;
-                attrs.controls = '';
             }
 
             break;
