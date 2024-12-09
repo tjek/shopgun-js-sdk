@@ -812,6 +812,8 @@ export default class Incito extends MicroEvent<{
             const link = linkEl ? linkEl.dataset.link : null;
 
             if (isDefinedStr(link)) {
+                e.stopPropagation();
+
                 window.open(link!, '_blank');
             }
 
@@ -821,6 +823,8 @@ export default class Incito extends MicroEvent<{
                 const scrollLeft = carouselEl.scrollLeft;
 
                 if (carouselPrevEl) {
+                    e.stopPropagation();
+
                     const newScrollLeft = scrollLeft - clientWidth;
 
                     if (newScrollLeft < 0) {
@@ -835,6 +839,8 @@ export default class Incito extends MicroEvent<{
                         });
                     }
                 } else if (carouselNextEl) {
+                    e.stopPropagation();
+
                     const newScrollLeft = scrollLeft + clientWidth;
 
                     if (newScrollLeft >= scrollWidth) {
