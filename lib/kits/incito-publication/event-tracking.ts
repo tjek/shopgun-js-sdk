@@ -23,7 +23,7 @@ class IncitoPublicationEventTracking extends MicroEvent {
 
         return this;
     }
-    trackIncitoPublicationOpenedMinimumMosMs = 500;
+    trackIncitoPublicationOpenedMinimumMosMs = 300;
     sectionVisibility: Map<string, number> = new Map();
     onSectionVisible = ({
         sectionId,
