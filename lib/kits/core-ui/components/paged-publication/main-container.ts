@@ -4,17 +4,17 @@ import './main-container.styl';
 
 const defaultTemplate = `\
     <div class="sgn__pp" data-layout-fixed="true" data-component-template="true" data-component-template-disable-header="{{disableHeader}}" data-component-template-enable-sidebar="{{enableSidebar}}" data-component-template-sidebar-position="{{sidebarPosition}}">
-        <div class="sgn__header-container"></div>
         
-        {{#enableSidebar}}
-        <div class="sgn__menu-sidebar-container"></div>
-        {{/enableSidebar}}
 
         <div class="verso">
             <div class="verso__scroller">
                 <div class="sgn-pp__pages"></div>
             </div>
-        </div>
+        </div><div class="sgn__header-container"></div>
+        
+        {{#enableSidebar}}
+        <div class="sgn__menu-sidebar-container"></div>
+        {{/enableSidebar}}
 
         {{#disableHeader}}
             <div class="sgn-pp__progress">

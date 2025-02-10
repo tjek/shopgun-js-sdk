@@ -97,6 +97,12 @@ function renderHotspot(hotspot, position, contentRect, boundingRect) {
     el.style.width = `${width}px`;
     el.style.height = `${height}px`;
 
+    el.setAttribute('tabindex', '0');
+    el.setAttribute(
+        'aria-label',
+        `${hotspot.offer.heading}; Price: ${hotspot.offer.pricing.price} ${hotspot.offer.pricing.currency};`
+    );
+
     return el;
 }
 
