@@ -191,6 +191,8 @@ const PagedPublication = (
             )
         });
 
+        addScreenReaderText();
+
         header.show(sgnData);
 
         if (!scriptEls.disablePageDecorations) {
@@ -213,6 +215,30 @@ const PagedPublication = (
 
         displayUrlParams();
         addFirstLastControlListener();
+    };
+
+    const addScreenReaderText = () => {
+        const container = options.el;
+
+        const formatDate = (date) => {
+            const dateFormat = new Date(date);
+
+            return new Intl.DateTimeFormat('en-US', {
+                month: 'long',
+                day: 'numeric'
+            }).format(dateFormat);
+        };
+
+        container.setAttribute(
+            'aria-label',
+            `${sgnData?.details?.branding?.name};
+            ${sgnData?.details?.label};
+            ${sgnData?.details?.page_count} pages;
+            Valid from ${formatDate(
+                sgnData?.details?.run_from
+            )} to ${formatDate(sgnData?.details?.run_till)}
+            `
+        );
     };
 
     const addFirstLastControlListener = () => {

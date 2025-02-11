@@ -100,7 +100,7 @@ function renderHotspot(hotspot, position, contentRect, boundingRect) {
     el.setAttribute('tabindex', '0');
     el.setAttribute(
         'aria-label',
-        `${hotspot.offer.heading}; Price: ${hotspot.offer.pricing.price} ${hotspot.offer.pricing.currency};`
+        `${hotspot.offer.heading}; ${hotspot.offer.pricing.price} ${hotspot.offer.pricing.currency};`
     );
 
     return el;
