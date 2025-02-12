@@ -5,7 +5,6 @@ import './main-container.styl';
 const defaultTemplate = `\
     <div class="sgn__pp" data-layout-fixed="true" data-component-template="true" data-component-template-disable-header="{{disableHeader}}" data-component-template-enable-sidebar="{{enableSidebar}}" data-component-template-sidebar-position="{{sidebarPosition}}">
         
-
         <div class="verso">
             <div class="verso__scroller">
                 <div class="sgn-pp__pages"></div>
@@ -25,24 +24,28 @@ const defaultTemplate = `\
         <button
             class="sgn-pp__control"
             data-direction="prev"
+            aria-label="Previous page"
         >
             &lsaquo;
         </button>
         <button
             class="sgn-pp__control"
             data-direction="next"
+            aria-label="Next page"
         >
             &rsaquo;
         </button>
         <button
             class="sgn-pp__control sgn-pp--hidden"
             data-direction="first"
+            aria-label="First page"
         >
             &laquo;
         </button>
         <button
             class="sgn-pp__control sgn-pp--hidden"
             data-direction="last"
+            aria-label="Last page"
         >
             &raquo;
         </button>
