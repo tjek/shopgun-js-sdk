@@ -9,7 +9,39 @@ const defaultTemplate = `\
             <div class="verso__scroller">
                 <div class="sgn-pp__pages"></div>
             </div>
-        </div><div class="sgn__header-container"></div>
+        </div>
+        
+        
+        <button
+            class="sgn-pp__control"
+            data-direction="next"
+            aria-label="Next page"
+        >
+            &rsaquo;
+        </button>
+        <button
+            class="sgn-pp__control sgn-pp--hidden"
+            data-direction="last"
+            aria-label="Last page"
+        >
+            &raquo;
+        </button>   
+        <button
+            class="sgn-pp__control"
+            data-direction="prev"
+            aria-label="Previous page"
+        >
+            &lsaquo;
+        </button>
+        <button
+            class="sgn-pp__control sgn-pp--hidden"
+            data-direction="first"
+            aria-label="First page"
+        >
+            &laquo;
+        </button>
+        <div class="sgn-page_decorations"></div>
+        <div class="sgn__header-container"></div>
         
         {{#enableSidebar}}
         <div class="sgn__menu-sidebar-container"></div>
@@ -21,35 +53,6 @@ const defaultTemplate = `\
             </div>
             <div class="sgn-pp__progress-label"></div>
         {{/disableHeader}}
-        <button
-            class="sgn-pp__control"
-            data-direction="prev"
-            aria-label="Previous page"
-        >
-            &lsaquo;
-        </button>
-        <button
-            class="sgn-pp__control"
-            data-direction="next"
-            aria-label="Next page"
-        >
-            &rsaquo;
-        </button>
-        <button
-            class="sgn-pp__control sgn-pp--hidden"
-            data-direction="first"
-            aria-label="First page"
-        >
-            &laquo;
-        </button>
-        <button
-            class="sgn-pp__control sgn-pp--hidden"
-            data-direction="last"
-            aria-label="Last page"
-        >
-            &raquo;
-        </button>
-        <div class="sgn-page_decorations"></div>
     </div>\
 `;
 
